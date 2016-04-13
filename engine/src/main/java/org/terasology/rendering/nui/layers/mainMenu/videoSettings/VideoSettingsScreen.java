@@ -34,6 +34,7 @@ import org.terasology.rendering.nui.itemRendering.StringTextRenderer;
 import org.terasology.rendering.nui.widgets.UIDropdown;
 import org.terasology.rendering.nui.widgets.UISlider;
 import org.terasology.rendering.world.viewDistance.ViewDistance;
+import org.terasology.rendering.world.viewDistance.ViewDistanceBinding;
 
 import javax.imageio.ImageIO;
 import java.util.Arrays;
@@ -66,14 +67,14 @@ public class VideoSettingsScreen extends CoreScreenLayer {
     public void initialise() {
         UIDropdown<Preset> videoQuality = find("graphicsPreset", UIDropdown.class);
         if (videoQuality != null) {
-            videoQuality.setOptions(Lists.newArrayList(Preset.CUSTOM, Preset.MINIMAL, Preset.LOW, Preset.MEDIUM, Preset.HIGH, Preset.ULTRA));
+            videoQuality.setOptions(Lists.newArrayList(Preset.values()));
             videoQuality.bindSelection(new PresetBinding(config.getRendering()));
         }
 
         UIDropdown<ViewDistance> viewDistance = find("viewDistance", UIDropdown.class);
         if (viewDistance != null) {
             viewDistance.setOptions(Arrays.asList(ViewDistance.values()));
-            viewDistance.bindSelection(BindHelper.bindBeanProperty("viewDistance", config.getRendering(), ViewDistance.class));
+            viewDistance.bindSelection(new ViewDistanceBinding((config.getRendering())));
         }
 
         UIDropdown<WaterReflection> waterReflection = find("reflections", UIDropdown.class);

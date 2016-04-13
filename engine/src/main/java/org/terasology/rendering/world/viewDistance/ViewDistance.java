@@ -17,20 +17,47 @@ package org.terasology.rendering.world.viewDistance;
 
 import gnu.trove.map.TIntObjectMap;
 import gnu.trove.map.hash.TIntObjectHashMap;
+import org.terasology.config.RenderingConfig;
 import org.terasology.math.geom.Vector3i;
 
 /**
  * The possible view distance options, that can be selected by the user.
  */
 public enum ViewDistance {
-
-    LEGALLY_BLIND("Legally Blind", 0, new Vector3i(5, 5, 5)),
-    NEAR("Near", 1, new Vector3i(9, 7, 9)),
-    MODERATE("Moderate", 2, new Vector3i(13, 7, 13)),
-    FAR("Far", 3, new Vector3i(17, 7, 17)),
-    ULTRA("Ultra", 4, new Vector3i(25, 7, 25)),
-    MEGA("Mega", 5, new Vector3i(33, 7, 33)),
-    EXTREME("Extreme", 6, new Vector3i(63, 7, 63));
+    
+    MINIMAL("Minimal", 0, new Vector3i(5, 5, 5)) {
+        @Override
+        public void apply(RenderingConfig renderConfig) {
+            renderConfig.setViewDistance(this);
+        }
+    },
+    LOW("Low", 1, new Vector3i(9, 7, 9)) {
+        @Override
+        public void apply(RenderingConfig renderConfig) {
+            renderConfig.setViewDistance(this);
+        }
+    },
+    REGULAR("Near", 2, new Vector3i(13, 7, 13)) {
+        @Override
+        public void apply(RenderingConfig renderConfig) {
+            renderConfig.setViewDistance(this);        }
+    },
+    HIGH("High", 3, new Vector3i(17, 7, 17)) {
+        @Override
+        public void apply(RenderingConfig renderConfig) {
+            renderConfig.setViewDistance(this);        }
+    },
+    ULTRA("Ultra", 4, new Vector3i(25, 7, 25)) {
+        @Override
+        public void apply(RenderingConfig renderConfig) {
+            renderConfig.setViewDistance(this);        }
+    },
+    CUSTOM("Custom", 5, new Vector3i(25, 7, 25)) {
+        @Override
+        public void apply(RenderingConfig renderConfig) {
+            renderConfig.setViewDistance(this);        }
+    }
+    ;
 
     private static TIntObjectMap<ViewDistance> indexLookup = new TIntObjectHashMap<>();
 
@@ -61,10 +88,12 @@ public enum ViewDistance {
     public static ViewDistance forIndex(int viewDistanceLevel) {
         ViewDistance result = indexLookup.get(viewDistanceLevel);
         if (result == null) {
-            return LEGALLY_BLIND;
+            return MINIMAL;
         }
         return result;
     }
+
+    public abstract void apply(RenderingConfig renderConfig);
 
     @Override
     public String toString() {
