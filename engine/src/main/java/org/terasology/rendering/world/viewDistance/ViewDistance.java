@@ -24,7 +24,7 @@ import org.terasology.math.geom.Vector3i;
  * The possible view distance options, that can be selected by the user.
  */
 public enum ViewDistance {
-    
+
     MINIMAL("Minimal", 0, new Vector3i(5, 5, 5)) {
         @Override
         public void apply(RenderingConfig renderConfig) {
@@ -40,24 +40,27 @@ public enum ViewDistance {
     REGULAR("Near", 2, new Vector3i(13, 7, 13)) {
         @Override
         public void apply(RenderingConfig renderConfig) {
-            renderConfig.setViewDistance(this);        }
+            renderConfig.setViewDistance(this);
+        }
     },
     HIGH("High", 3, new Vector3i(17, 7, 17)) {
         @Override
         public void apply(RenderingConfig renderConfig) {
-            renderConfig.setViewDistance(this);        }
+            renderConfig.setViewDistance(this);
+        }
     },
     ULTRA("Ultra", 4, new Vector3i(25, 7, 25)) {
         @Override
         public void apply(RenderingConfig renderConfig) {
-            renderConfig.setViewDistance(this);        }
+            renderConfig.setViewDistance(this);
+        }
     },
     CUSTOM("Custom", 5, new Vector3i(25, 7, 25)) {
         @Override
         public void apply(RenderingConfig renderConfig) {
-            renderConfig.setViewDistance(this);        }
-    }
-    ;
+            renderConfig.setViewDistance(this);
+        }
+    };
 
     private static TIntObjectMap<ViewDistance> indexLookup = new TIntObjectHashMap<>();
 
