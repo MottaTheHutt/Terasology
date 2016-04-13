@@ -48,7 +48,7 @@ public class RenderableWorldImpl implements RenderableWorld {
 
     private static final int MAX_ANIMATED_CHUNKS = 64;
     private static final int MAX_BILLBOARD_CHUNKS = 64;
-    private static final int MAX_LOADABLE_CHUNKS = ViewDistance.MEGA.getChunkDistance().x * ViewDistance.MEGA.getChunkDistance().y * ViewDistance.MEGA.getChunkDistance().z;
+    private static final int MAX_LOADABLE_CHUNKS = ViewDistance.forIndex(4).getChunkDistance().x * ViewDistance.forIndex(4).getChunkDistance().y * ViewDistance.forIndex(4).getChunkDistance().z;
     private static final Vector3f CHUNK_CENTER_OFFSET = new Vector3f(0.5f, 0.5f, 0.5f);
 
     private static final Logger logger = LoggerFactory.getLogger(RenderableWorldImpl.class);

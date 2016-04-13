@@ -39,7 +39,7 @@ import java.util.List;
 
 public class HeadlessWorldRenderer implements WorldRenderer {
 
-    private static final int MAX_CHUNKS = ViewDistance.MEGA.getChunkDistance().x * ViewDistance.MEGA.getChunkDistance().y * ViewDistance.MEGA.getChunkDistance().z;
+    private static final int MAX_CHUNKS = ViewDistance.forIndex(4).getChunkDistance().x * ViewDistance.forIndex(4).getChunkDistance().y * ViewDistance.forIndex(4).getChunkDistance().z;
 
     private WorldProvider worldProvider;
     private ChunkProvider chunkProvider;

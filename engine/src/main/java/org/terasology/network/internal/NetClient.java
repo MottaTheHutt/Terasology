@@ -109,7 +109,7 @@ public class NetClient extends AbstractClient implements WorldChangeListener {
 
     private String preferredName = "Player";
     private long lastReceivedTime;
-    private ViewDistance viewDistance = ViewDistance.NEAR;
+    private ViewDistance viewDistance = ViewDistance.forIndex(1);
     private float chunkSendCounter = 1.0f;
 
     private float chunkSendRate = 0.05469f;

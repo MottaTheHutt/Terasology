@@ -99,7 +99,7 @@ public class PlayerSystem extends BaseComponentSystem implements UpdateSubscribe
         PlayerStore playerStore = connected.getPlayerStore();
 
         Client owner = networkSystem.getOwner(entity);
-        Vector3i minViewDist = ViewDistance.LEGALLY_BLIND.getChunkDistance();
+        Vector3i minViewDist = ViewDistance.forIndex(0).getChunkDistance();
 
         if (playerStore.hasCharacter()) {
 
@@ -190,7 +190,7 @@ public class PlayerSystem extends BaseComponentSystem implements UpdateSubscribe
         if (worldProvider.isBlockRelevant(spawnPosition)) {
             spawnPlayer(entity);
         } else {
-            updateRelevanceEntity(entity, ViewDistance.LEGALLY_BLIND.getChunkDistance());
+            updateRelevanceEntity(entity, ViewDistance.forIndex(0).getChunkDistance());
             SpawningClientInfo info = new SpawningClientInfo(entity, spawnPosition);
             clientsPreparingToSpawn.add(info);
         }
